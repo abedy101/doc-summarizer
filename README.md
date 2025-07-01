@@ -1,121 +1,104 @@
 
+
 ---
 
 ````markdown
-# AI Document Summarizer & Key Term Extractor
+# AI Document Summarizer
 
-A powerful, client-ready tool that summarizes long documents and extracts key terms in seconds. Designed for legal teams, researchers, and corporate clients who need to review large files fast.
-
-This app uses OpenAI’s GPT models and LangChain to turn complex contracts, reports, or research papers into short, structured summaries with highlights of risky or critical language.
-
----
-
-## What This Tool Does
-
-- Accepts PDF or text documents  
-- Extracts bullet-point summaries  
-- Flags high-risk terms (e.g., "termination", "indemnify", "liable")  
-- Exports structured output (copyable, downloadable)  
-- Optional: Batch summarization for multiple files
+A lightweight, no-login app that extracts key insights from PDF documents using GPT and highlights risky contract terms for quick review. Built with Streamlit and LangChain.
 
 ---
 
 ## Key Features
 
 ### 1. Smart Summarization  
-Automatically generates a short summary of the most important points in your document.
+Generates a concise summary of the most important information in your uploaded document.
 
 ### 2. Risk Flagging  
-Terms like *"terminate"*, *"indemnify"*, or *"noncompliance"* are highlighted in bold for fast review.
+Highlights sensitive or risky terms like `terminate`, `indemnify`, or `noncompliance` in **bold** for faster scanning.
 
 ### 3. Upload-and-Go  
-Built with Streamlit. No coding or installation knowledge required. Upload your PDF and get your summary in seconds.
+Just upload your PDF — no coding or config required. Summaries are generated instantly in your browser.
 
 ### 4. Extensible  
-Easily adjust what terms are flagged, or customize the summary format (markdown, CSV, etc.)
+Customize risk keywords, tweak the summary format (Markdown, CSV, etc.), or plug in your own prompt templates.
 
 ---
 
 ## Demo Screenshot
 
-**Input:** `examples/sample-contract.pdf`  
-**Output Summary:**  
+**Input PDF:** [`examples/sample-contract.pdf`](examples/sample-contract.pdf)  
+**Output Summary:**
+
 - Agreement between Santa Cruz County and Consultant  
 - Consultant provides services listed in Scope of Work  
-- Named key personnel required to remain consistent  
+- Named key personnel must remain unchanged without consent  
 - Progress reports submitted monthly  
 - Payments based on approved milestones  
-- Risk terms: **terminate**, **indemnify**, **reimbursed**
 
-| Input PDF | Output Summary |
-|-----------|----------------|
-| ![Input](examples/sample-contract.png) | ![Summary](examples/sample-summary.png) |
+Risk terms highlighted in bold for quick review.
 
 ---
 
-## How to Use
+## How to Run Locally
 
 ```bash
-git clone https://github.com/abedy101/doc-summarizer
+git clone https://github.com/abedy101/doc-summarizer.git
 cd doc-summarizer
+python -m venv venv
+venv\Scripts\activate   # On Windows
 pip install -r requirements.txt
+streamlit run app.py
 ````
 
-Then run:
+Make sure you have a `.env` file in the root directory containing your OpenAI API key:
 
-```bash
-streamlit run app.py
 ```
-
-Upload a document and get instant summaries and flagged clauses in the browser.
+OPENAI_API_KEY=your_key_here
+```
 
 ---
 
 ## Folder Structure
 
-```bash
-doc-summarizer/
-├── examples/          # Sample input PDFs and output screenshots
-├── utils/             # PDF-to-text preprocessing logic
-├── summarize.py       # Core summarization + flagging logic
-├── app.py             # Streamlit UI
-├── requirements.txt   # Python dependencies
-└── README.md          # You are here
 ```
+doc-summarizer/
+├── examples/               # Sample PDFs for testing
+│   └── sample-contract.pdf
+├── app.py                  # Streamlit frontend logic
+├── summarize.py            # Core summarization & risk detection logic
+├── .env                    # API key (excluded from Git)
+├── .gitignore              # Hides .env and other local files
+├── requirements.txt        # Python dependencies
+└── README.md               # Project overview
+```
+
+---
+
+## Built With
+
+* [Streamlit](https://streamlit.io/) – UI and hosting
+* [LangChain](https://www.langchain.com/) – LLM interface
+* [OpenAI GPT](https://openai.com/gpt) – Summarization engine
+* [PyMuPDF (fitz)](https://pymupdf.readthedocs.io/) – PDF parsing
 
 ---
 
 ## Use Cases
 
-* Law firms summarizing contracts and terms
-* Researchers reviewing academic papers
-* Teams cleaning up meeting notes and long reports
-* Procurement teams screening vendor proposals
+* Legal contract review
+* Procurement document summaries
+* HR policies or SOP digests
+* Insurance or compliance summaries
+* Quick flagging of risky clauses
 
 ---
 
-## Customization
+## Need a Custom Version?
 
-This project can be extended to:
+This is a public demo. For custom GPT prompts, integrations (e.g., email summaries, legal CRM), or private deployment:
 
-* Accept DOCX or email input formats
-* Customize risk terms and thresholds
-* Run batch summarization on folders
-* Integrate into enterprise workflows (APIs, databases)
-
----
-
-## Need Help?
-
-This is a demo version. If you want a custom solution:
-
-* I can train it on your documents
-* Add multi-language support
-* Deploy securely on your infrastructure
-
-Get in touch via GitHub or Upwork for consultation.
-
-```
+→ Reach out via [GitHub](https://github.com/abedy101) or Upwork.
 
 ---
 
